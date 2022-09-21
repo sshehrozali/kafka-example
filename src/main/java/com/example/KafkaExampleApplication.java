@@ -16,7 +16,10 @@ public class KafkaExampleApplication {
     @Bean
     CommandLineRunner commandLineRunner(KafkaTemplate<String, String> kafkaTemplate) {
         return args -> {
-            kafkaTemplate.send("topic", "hello kafka");
+            // Producing 10,000 messages in Kafka Topic
+            for (int i = 0; i < 10_000; i++) {
+                kafkaTemplate.send("topic", "hello kafka " + i);
+            }
         };
     }
 }
